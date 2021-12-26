@@ -50,36 +50,39 @@ import javafx.stage.Window;
 public class LoginController implements Initializable {
      Scene sceneStart, sceneRegister, sceneLogin, sceneReset, sceneHome;
     
-    @FXML
-    private TextField txtEmail;
-
-    @FXML
-    private PasswordField txtPassword;
-
-    @FXML
-    private Label label1;
-
-    @FXML
-    private Label label;
-
-    @FXML
-    private Button btnSignin;
-
-    @FXML
-    private Label btnForgot;
-
-    @FXML
-    private Button btnSignup;
-
-    @FXML
-    private Label lblErrors;
+     @FXML
+     private TextField txtEmail;
+ 
+     @FXML
+     private PasswordField txtPassword;
+ 
+     @FXML
+     private Button btnSignin;
+ 
+     @FXML
+     private Label btnForgot;
+ 
+     @FXML
+     private Button btnSignup;
+ 
+     @FXML
+     private Label lblErrors;
+ 
+     @FXML
+     void handleSignUp(ActionEvent event) {
+ 
+     }
+     
+     
+     @FXML
+     void handleForgetPassword(ActionEvent event) {
+ 
+     }
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label1.setText("Hello World!");
+    private void handleSignIn(ActionEvent event) {
             Window owner = btnSignin.getScene().getWindow();        
-                    if (txtEmail.getText().isEmpty()) {
+            if (txtEmail.getText().isEmpty()) {
               showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Please enter your email id");
               return;
@@ -93,6 +96,7 @@ public class LoginController implements Initializable {
             String emailId = txtEmail.getText();
             String password = txtPassword.getText();
             LoginDao loginDao = new LoginDao();
+            
             boolean flag;
             try {
               flag = loginDao.validate(emailId, password);
@@ -103,10 +107,8 @@ public class LoginController implements Initializable {
                 
               }
             } catch (SQLException ex) {
-              Logger.getLogger(Alumni_LoginController.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-        
     }
     
     @Override

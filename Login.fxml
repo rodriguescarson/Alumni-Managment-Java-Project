@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="854.0" style="-fx-background-color: #000000; -fx-border-color: #9643A9;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="854.0" style="-fx-background-color: #000000; -fx-border-color: #9643A9;" stylesheets="@../styling/fullpackstyling.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication.LoginController">
     <children>
         <AnchorPane prefHeight="503.0" prefWidth="382.0" style="-fx-background-color: #05071F;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -34,15 +34,10 @@
         </AnchorPane>
         <Pane layoutX="488.0" layoutY="100.0" AnchorPane.bottomAnchor="73.0" AnchorPane.topAnchor="100.0">
             <children>
-                <TextField fx:id="txtUsername" layoutX="7.0" prefHeight="34.0" prefWidth="275.0" promptText="username or email" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
-                <PasswordField fx:id="txtPassword" layoutX="7.0" layoutY="61.0" prefHeight="34.0" prefWidth="275.0" promptText="password" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" stylesheets="@../styling/fullpackstyling.css" />
-                <Button fx:id="btnSignin" layoutX="145.0" layoutY="125.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" prefHeight="34.0" prefWidth="137.0" style="-fx-background-color: #202FBA;" stylesheets="@../styling/fullpackstyling.css" text="Sign in" />
-                <Label fx:id="btnForgot" alignment="CENTER" layoutX="8.0" layoutY="131.0" prefHeight="23.0" prefWidth="93.0" text="Forgot Password" textFill="#5383ff">
-                    <font>
-                        <Font name="Segoe UI" size="12.0" />
-                    </font>
-                </Label>
-                <Button fx:id="btnSignup" layoutX="4.0" layoutY="233.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="275.0" style="-fx-background-color: #202FBA;" stylesheets="@../styling/fullpackstyling.css" text="Sign up" />
+                <TextField fx:id="txtEmail" layoutX="7.0" prefHeight="34.0" prefWidth="275.0" promptText="email" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+                <PasswordField fx:id="txtPassword" layoutX="7.0" layoutY="61.0" prefHeight="34.0" prefWidth="275.0" promptText="password" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+                <Button fx:id="btnSignin" layoutX="145.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleSignIn" prefHeight="34.0" prefWidth="137.0" style="-fx-background-color: #202FBA;" stylesheets="@../styling/fullpackstyling.css" text="Sign in" textFill="WHITE" />
+                <Button fx:id="btnSignup" layoutX="4.0" layoutY="233.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="34.0" prefWidth="275.0" style="-fx-background-color: #202FBA;" stylesheets="@../styling/fullpackstyling.css" text="Sign up" textFill="WHITE" />
                 <Separator layoutX="8.0" layoutY="190.0" prefHeight="7.0" prefWidth="275.0" />
                 <Label alignment="CENTER" layoutX="126.0" layoutY="179.0" prefHeight="23.0" prefWidth="31.0" style="-fx-background-color: #000000;" text="Or" textFill="WHITE">
                     <font>
@@ -54,6 +49,7 @@
                         <Font name="Segoe UI" size="10.0" />
                     </font>
                 </Label>
+            <Button fx:id="btnSignin1" layoutX="8.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleForgetPassword" prefHeight="34.0" prefWidth="137.0" style="-fx-background-color: #000000; -fx-border-color: #000000;" styleClass="forgetButton" stylesheets="@../styling/fullpackstyling.css" text="Forget Password" />
             </children>
         </Pane>
         <Label alignment="CENTER" layoutX="394.0" layoutY="466.0" prefHeight="23.0" prefWidth="173.0" text="Designed By: Reev &amp; Carson" textFill="#5b5a5a" AnchorPane.bottomAnchor="14.0">

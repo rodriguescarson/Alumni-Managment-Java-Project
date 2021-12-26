@@ -11,7 +11,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,39 +20,71 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
 
     @FXML
-    private VBox pnItems = null;
+    private ImageView imgUrl;
+
+    @FXML
+    private Label name;
+
     @FXML
     private Button btnOverview;
 
     @FXML
-    private Button btnOrders;
+    private Button btnConnects;
 
     @FXML
-    private Button btnCustomers;
+    private Button btnEdit;
 
     @FXML
-    private Button btnMenus;
+    private Button btnSignOut;
 
     @FXML
-    private Button btnPackages;
+    private Pane pnlConnects;
 
     @FXML
-    private Button btnSettings;
+    private Pane pnlEdit;
 
     @FXML
-    private Button btnSignout;
-
-    @FXML
-    private Pane pnlCustomer;
-
-    @FXML
-    private Pane pnlOrders;
+    private Pane pnlSignOut;
 
     @FXML
     private Pane pnlOverview;
 
     @FXML
-    private Pane pnlMenus;
+    private Label Prno;
+
+    @FXML
+    private Label yearOfPassingOut;
+
+    @FXML
+    private Label Department;
+
+    @FXML
+    private Label Cgpa;
+
+    @FXML
+    private VBox pnItems;
+
+    @FXML
+    private Label email;
+
+    @FXML
+    private Label working;
+
+    @FXML
+    private Label currentPosition;
+
+    @FXML
+    private Label linkedin;
+
+    @FXML
+    private Label college;
+
+    @FXML
+    private Label gender;
+
+    @FXML
+    private Label workinPlace;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -79,22 +112,25 @@ public class HomeController implements Initializable {
 
 
     public void handleClicks(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == btnCustomers) {
-            pnlCustomer.setStyle("-fx-background-color : #1620A1");
-            pnlCustomer.toFront();
-        }
-        if (actionEvent.getSource() == btnMenus) {
-            pnlMenus.setStyle("-fx-background-color : #53639F");
-            pnlMenus.toFront();
-        }
         if (actionEvent.getSource() == btnOverview) {
             pnlOverview.setStyle("-fx-background-color : #02030A");
             pnlOverview.toFront();
         }
-        if(actionEvent.getSource()==btnOrders)
+        
+        if(actionEvent.getSource()==btnEdit)
         {
-            pnlOrders.setStyle("-fx-background-color : #464F67");
-            pnlOrders.toFront();
+            pnlEdit.setStyle("-fx-background-color : #464F67");
+            pnlEdit.toFront();
         }
+        if (actionEvent.getSource() == btnConnects) {
+            pnlConnects.setStyle("-fx-background-color : #1620A1");
+            pnlConnects.toFront();
+        }
+        
+        if (actionEvent.getSource() == btnSignOut) {
+            pnlSignOut.setStyle("-fx-background-color : #53639F");
+            pnlSignOut.toFront();
+        }
+
     }
 }
