@@ -190,22 +190,22 @@
                            <children>
                               <Pane prefHeight="366.0" prefWidth="734.0">
                                  <children>
-                                    <Label layoutX="56.0" layoutY="93.0" text="E-mail" textFill="#ddd9d9">
+                                    <Label layoutX="52.0" layoutY="37.0" text="EmaiID" textFill="#ddd9d9">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="55.0" layoutY="153.0" text="Current Password" textFill="#ddd9d9">
+                                    <Label layoutX="55.0" layoutY="153.0" text="Working" textFill="#ddd9d9">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="56.0" layoutY="210.0" text="New Password" textFill="#ddd9d9">
+                                    <Label layoutX="56.0" layoutY="210.0" text="Post" textFill="#ddd9d9">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="53.0" layoutY="265.0" text="Confirm Password" textFill="#ddd9d9">
+                                    <Label layoutX="53.0" layoutY="265.0" text="Linkdin" textFill="#ddd9d9">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -233,7 +233,7 @@
                                     <CheckBox layoutX="457.0" layoutY="444.0" mnemonicParsing="false" />
                                     <Button layoutX="165.0" layoutY="488.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: #FCBB31;" text="CANCEL" textFill="WHITE" />
                                     <Button layoutX="299.0" layoutY="488.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="112.0" style="-fx-background-color: #CE201C;" text="SAVE" textFill="WHITE" />
-                                    <Label alignment="CENTER" graphicTextGap="5.0" layoutX="213.0" layoutY="78.0" prefHeight="33.0" prefWidth="393.0" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" text="Don Bosco College of engineering" textFill="#bb5bd0">
+                                    <Label alignment="CENTER" graphicTextGap="5.0" layoutX="215.0" layoutY="30.0" prefHeight="33.0" prefWidth="393.0" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" text="demo@demo.com" textFill="#bb5bd0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -249,6 +249,16 @@
                                        </font>
                                     </Label>
                                     <Label alignment="CENTER" graphicTextGap="5.0" layoutX="215.0" layoutY="259.0" prefHeight="33.0" prefWidth="393.0" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" text="Don Bosco College of engineering" textFill="#bb5bd0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" graphicTextGap="5.0" layoutX="215.0" layoutY="83.0" prefHeight="33.0" prefWidth="393.0" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" text="Don Bosco College of engineering" textFill="#bb5bd0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="52.0" layoutY="90.0" text="Callege" textFill="#ddd9d9">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
