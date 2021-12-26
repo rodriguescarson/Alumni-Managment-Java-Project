@@ -22,23 +22,23 @@
                         <Image url="@../images/icons8_Google_Wallet_50px.png" />
                     </image>
                 </ImageView>
-                <TextField fx:id="txtFirstname" layoutX="75.0" layoutY="193.0" prefHeight="32.0" prefWidth="278.0" promptText="Firstname" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
-                <TextField fx:id="txtLastname" layoutX="76.0" layoutY="252.0" prefHeight="32.0" prefWidth="278.0" promptText="Lastname" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
-                <TextField fx:id="txtEmail" layoutX="76.0" layoutY="135.0" prefHeight="32.0" prefWidth="278.0" promptText="Email" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
+                <TextField fx:id="txtFirstname" layoutX="75.0" layoutY="193.0" prefHeight="32.0" prefWidth="278.0" promptText="Firstname" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+                <TextField fx:id="txtLastname" layoutX="76.0" layoutY="252.0" prefHeight="32.0" prefWidth="278.0" promptText="Lastname" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+                <TextField fx:id="txtEmail" layoutX="76.0" layoutY="135.0" prefHeight="32.0" prefWidth="278.0" promptText="Email" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
                 <DatePicker fx:id="txtDOB" layoutX="75.0" layoutY="364.0" prefHeight="32.0" prefWidth="278.0" promptText="DOB" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
-                <Button fx:id="btnSave" layoutX="221.0" layoutY="494.0" mnemonicParsing="false" onMouseClicked="#HandleEvents" prefHeight="32.0" prefWidth="278.0" style="-fx-background-color: #202FBA;" styleClass="button2" stylesheets="@../styling/fullpackstyling.css" text="Save" />
+                <Button fx:id="btnSave" layoutX="221.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="32.0" prefWidth="278.0" style="-fx-background-color: #202FBA;" styleClass="button2" stylesheets="@../styling/fullpackstyling.css" text="Save" />
                 <ComboBox fx:id="txtGender" editable="true" layoutX="76.0" layoutY="308.0" prefHeight="32.0" prefWidth="278.0" promptText="Gender" stylesheets="@../styling/fullpackstyling.css">
                <styleClass>
                   <String fx:value="chart" />
                   <String fx:value="combo-box" />
                </styleClass></ComboBox>
-            <TextField fx:id="txtFirstname1" layoutX="391.0" layoutY="193.0" prefHeight="32.0" prefWidth="278.0" promptText="PRno" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
-            <TextField fx:id="txtLastname1" layoutX="391.0" layoutY="252.0" prefHeight="32.0" prefWidth="278.0" promptText="College Name" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
-            <TextField fx:id="txtEmail1" layoutX="391.0" layoutY="421.0" prefHeight="32.0" prefWidth="278.0" promptText="Year Of  Passing Out" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
-            <TextField fx:id="txtLastname11" layoutX="391.0" layoutY="308.0" prefHeight="32.0" prefWidth="278.0" promptText="Workplace" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
-            <TextField fx:id="txtEmail11" layoutX="391.0" layoutY="367.0" prefHeight="32.0" prefWidth="278.0" promptText="Current Position" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
-            <TextField fx:id="txtLastname111" layoutX="76.0" layoutY="421.0" prefHeight="32.0" prefWidth="278.0" promptText="Linkedin" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
-            <PasswordField layoutX="391.0" layoutY="135.0" prefHeight="31.0" prefWidth="278.0" promptText="Password" style="-fx-border-color: #9643A9 #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
+            <TextField fx:id="prno" layoutX="391.0" layoutY="193.0" prefHeight="32.0" prefWidth="278.0" promptText="PRno" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+            <TextField fx:id="college" layoutX="391.0" layoutY="252.0" prefHeight="32.0" prefWidth="278.0" promptText="College Name" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+            <TextField fx:id="yearOfPassingOut" layoutX="391.0" layoutY="421.0" prefHeight="32.0" prefWidth="278.0" promptText="Year Of  Passing Out" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+            <TextField fx:id="workplace" layoutX="391.0" layoutY="308.0" prefHeight="32.0" prefWidth="278.0" promptText="Workplace" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+            <TextField fx:id="currentPosition" layoutX="391.0" layoutY="367.0" prefHeight="32.0" prefWidth="278.0" promptText="Current Position" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+            <TextField fx:id="linkedIn" layoutX="76.0" layoutY="421.0" prefHeight="32.0" prefWidth="278.0" promptText="Linkedin" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+            <PasswordField fx:id="txtPassword" layoutX="391.0" layoutY="135.0" prefHeight="31.0" prefWidth="278.0" promptText="Password" style="-fx-border-color: #9643A9 #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
             <Label layoutX="152.0" layoutY="58.0" text="Sign Up" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="27.0" />

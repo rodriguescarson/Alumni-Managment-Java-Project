@@ -47,50 +47,57 @@ import javafx.stage.Window;
  *
  * @author rodri
  */
-public class OnBoardController implements Initializable {
+public class Edit_detailsController implements Initializable {
      Scene sceneStart, sceneRegister, sceneLogin, sceneReset, sceneHome;
     
-    @FXML
-    private TextField txtFirstname;
+     @FXML
+     private TextField txtFirstname;
+ 
+     @FXML
+     private TextField txtLastname;
+ 
+     @FXML
+     private TextField txtEmail;
+ 
+     @FXML
+     private DatePicker txtDOB;
+ 
+     @FXML
+     private Button btnSave;
+ 
+     @FXML
+     private ComboBox<?> txtGender;
+ 
+     @FXML
+     private TextField prno;
+ 
+     @FXML
+     private TextField college;
+ 
+     @FXML
+     private TextField YearOfPassingOut;
+ 
+     @FXML
+     private TextField workplace;
+ 
+     @FXML
+     private TextField currentPosition;
+ 
+     @FXML
+     private TextField linkedin;
+ 
+     @FXML
+     private PasswordField password;
+ 
+     @FXML
+     private TextField Cgpa;
+ 
+     @FXML
+     private TextField department;
 
-    @FXML
-    private TextField txtLastname;
-
-    @FXML
-    private TextField txtEmail;
-
-    @FXML
-    private DatePicker txtDOB;
-
-    @FXML
-    private Button btnSave;
-
-    @FXML
-    private ComboBox<?> txtGender;
-
-    @FXML
-    private TextField prno;
-
-    @FXML
-    private TextField college;
-
-    @FXML
-    private TextField yearOfPassingOut;
-
-    @FXML
-    private TextField workplace;
-
-    @FXML
-    private TextField currentPosition;
-
-    @FXML
-    private TextField linkedIn;
-
-    @FXML
-    private PasswordField txtPassword;
     
     @FXML
-    private void handleSave(ActionEvent event) {
+    private void saveData(ActionEvent event) {
                     Window owner = btnSave.getScene().getWindow();
                   if (txtFirstname.getText().isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
@@ -112,22 +119,23 @@ public class OnBoardController implements Initializable {
                   String emailId = txtEmail.getText();
                   String lastname = txtLastname.getText();
                   
-                  RegisterDao registerDao = new RegisterDao();
+                  UpdateDao updateDao = new UpdateDao();
                   try {
-                    registerDao.insertRecord(fullName, emailId, lastname);
+                    updateDao.updateRecord(fullName, emailId, lastname);
                   } catch (SQLException ex) {
-                    Logger.getLogger(OnBoardController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Edit_detailsController.class.getName()).log(Level.SEVERE, null, ex);
                   }
                   
-                  showAlert(Alert.AlertType.CONFIRMATION, owner, "Created Successful!",
-                    " Welcome " + txtFirstname.getText());        
-   }
+                  showAlert(Alert.AlertType.CONFIRMATION, owner, "Update Successful!",
+                    " Updated" + txtFirstname.getText());
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-  private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+      // TODO
+    }
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
     Alert alert = new Alert(alertType);
     alert.setTitle(title);
     alert.setHeaderText(null);
