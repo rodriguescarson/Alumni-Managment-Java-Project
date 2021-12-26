@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="1101.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+    <children>
+        <Pane prefHeight="564.0" prefWidth="720.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="75.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/icons8_Google_Wallet_50px.png" />
+                    </image>
+                </ImageView>
+                <TextField fx:id="txtFirstname" layoutX="75.0" layoutY="193.0" prefHeight="32.0" prefWidth="278.0" promptText="Firstname" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
+                <TextField fx:id="txtLastname" layoutX="76.0" layoutY="252.0" prefHeight="32.0" prefWidth="278.0" promptText="Lastname" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
+                <TextField fx:id="txtEmail" layoutX="76.0" layoutY="135.0" prefHeight="32.0" prefWidth="278.0" promptText="Email" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
+                <DatePicker fx:id="txtDOB" layoutX="75.0" layoutY="364.0" prefHeight="32.0" prefWidth="278.0" promptText="DOB" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
+                <Button fx:id="btnSave" layoutX="221.0" layoutY="494.0" mnemonicParsing="false" onMouseClicked="#HandleEvents" prefHeight="32.0" prefWidth="278.0" style="-fx-background-color: #202FBA;" styleClass="button2" stylesheets="@../styling/fullpackstyling.css" text="Save" />
+                <ComboBox fx:id="txtGender" editable="true" layoutX="76.0" layoutY="308.0" prefHeight="32.0" prefWidth="278.0" promptText="Gender" stylesheets="@../styling/fullpackstyling.css">
+               <styleClass>
+                  <String fx:value="chart" />
+                  <String fx:value="combo-box" />
+               </styleClass></ComboBox>
+            <TextField fx:id="txtFirstname1" layoutX="391.0" layoutY="193.0" prefHeight="32.0" prefWidth="278.0" promptText="PRno" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
+            <TextField fx:id="txtLastname1" layoutX="391.0" layoutY="252.0" prefHeight="32.0" prefWidth="278.0" promptText="College Name" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
+            <TextField fx:id="txtEmail1" layoutX="391.0" layoutY="421.0" prefHeight="32.0" prefWidth="278.0" promptText="Year Of  Passing Out" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
+            <TextField fx:id="txtLastname11" layoutX="391.0" layoutY="308.0" prefHeight="32.0" prefWidth="278.0" promptText="Workplace" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
+            <TextField fx:id="txtEmail11" layoutX="391.0" layoutY="367.0" prefHeight="32.0" prefWidth="278.0" promptText="Current Position" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
+            <TextField fx:id="txtLastname111" layoutX="76.0" layoutY="421.0" prefHeight="32.0" prefWidth="278.0" promptText="Linkedin" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
+            <PasswordField layoutX="391.0" layoutY="135.0" prefHeight="31.0" prefWidth="278.0" promptText="Password" style="-fx-border-color: #9643A9 #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
+            <Label layoutX="152.0" layoutY="58.0" text="Sign Up" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Label>
+            </children>
+        </Pane>
+      <AnchorPane layoutX="720.0" layoutY="-3.0" prefHeight="571.0" prefWidth="382.0" style="-fx-background-color: #05071F;">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="166.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_Google_Wallet_50px.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="105.0" layoutY="262.0" prefHeight="23.0" prefWidth="173.0" text="AlumniT" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="89.0" layoutY="295.0" prefHeight="23.0" prefWidth="205.0" text="Don't Lose Your Connections" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>
