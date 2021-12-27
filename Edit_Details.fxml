@@ -22,12 +22,12 @@
                   <Image url="@../images/icons8_Google_Wallet_50px.png" />
                </image>
             </ImageView>
-            <TextField fx:id="txtFirstname" layoutX="76.0" layoutY="166.0" prefHeight="32.0" prefWidth="278.0" promptText="Firstname" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
-            <TextField fx:id="txtLastname" layoutX="77.0" layoutY="225.0" prefHeight="32.0" prefWidth="278.0" promptText="Lastname" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
-            <TextField fx:id="txtEmail" layoutX="77.0" layoutY="108.0" prefHeight="32.0" prefWidth="278.0" promptText="Email" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
-            <DatePicker fx:id="txtDOB" layoutX="76.0" layoutY="337.0" prefHeight="32.0" prefWidth="278.0" promptText="DOB" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
+            <TextField fx:id="fname" layoutX="76.0" layoutY="166.0" prefHeight="32.0" prefWidth="278.0" promptText="Firstname" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+            <TextField fx:id="lname" layoutX="77.0" layoutY="225.0" prefHeight="32.0" prefWidth="278.0" promptText="Lastname" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+            <TextField fx:id="email" layoutX="77.0" layoutY="108.0" prefHeight="32.0" prefWidth="278.0" promptText="Email" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+            <DatePicker fx:id="dob" layoutX="76.0" layoutY="337.0" prefHeight="32.0" prefWidth="278.0" promptText="DOB" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" />
             <Button fx:id="btnSave" layoutX="221.0" layoutY="512.0" mnemonicParsing="false" onAction="#saveData" prefHeight="32.0" prefWidth="278.0" style="-fx-background-color: #202FBA;" styleClass="button2" stylesheets="@../styling/fullpackstyling.css" text=" Save Changes" />
-            <ComboBox fx:id="txtGender" editable="true" layoutX="77.0" layoutY="281.0" prefHeight="32.0" prefWidth="278.0" promptText="Gender" stylesheets="@../styling/fullpackstyling.css">
+            <ComboBox fx:id="gender" editable="true" layoutX="77.0" layoutY="281.0" prefHeight="32.0" prefWidth="278.0" promptText="Gender" stylesheets="@../styling/fullpackstyling.css">
                <styleClass>
                   <String fx:value="chart" />
                   <String fx:value="combo-box" />
@@ -35,8 +35,8 @@
             </ComboBox>
             <TextField fx:id="prno" layoutX="392.0" layoutY="166.0" prefHeight="32.0" prefWidth="278.0" promptText="PRno" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
             <TextField fx:id="college" layoutX="392.0" layoutY="225.0" prefHeight="32.0" prefWidth="278.0" promptText="College Name" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
-            <TextField fx:id="YearOfPassingOut" layoutX="392.0" layoutY="394.0" prefHeight="32.0" prefWidth="278.0" promptText="Year Of  Passing Out" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
-            <TextField fx:id="workplace" layoutX="392.0" layoutY="281.0" prefHeight="32.0" prefWidth="278.0" promptText="Workplace" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+            <TextField fx:id="yearOfPassingOut" layoutX="392.0" layoutY="394.0" prefHeight="32.0" prefWidth="278.0" promptText="Year Of  Passing Out" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+            <TextField fx:id="workingPlace" layoutX="392.0" layoutY="281.0" prefHeight="32.0" prefWidth="278.0" promptText="Workplace" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
             <TextField fx:id="currentPosition" layoutX="392.0" layoutY="340.0" prefHeight="32.0" prefWidth="278.0" promptText="Current Position" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
             <TextField fx:id="linkedin" layoutX="77.0" layoutY="394.0" prefHeight="32.0" prefWidth="278.0" promptText="Linkedin" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
             <PasswordField fx:id="password" layoutX="392.0" layoutY="108.0" prefHeight="31.0" prefWidth="278.0" promptText="Password" style="-fx-border-color: #9643A9 #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
@@ -45,7 +45,7 @@
                   <Font name="System Bold" size="27.0" />
                </font>
             </Label>
-            <TextField fx:id="Cgpa" layoutX="77.0" layoutY="452.0" prefHeight="32.0" prefWidth="278.0" promptText="CGPA" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+            <TextField fx:id="cgpa" layoutX="77.0" layoutY="452.0" prefHeight="32.0" prefWidth="278.0" promptText="CGPA" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
             <TextField fx:id="department" layoutX="392.0" layoutY="452.0" prefHeight="32.0" prefWidth="278.0" promptText="Department" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
          </children>
       </Pane>

@@ -51,16 +51,16 @@ public class LoginController implements Initializable {
      Scene sceneStart, sceneRegister, sceneLogin, sceneReset, sceneHome;
     
      @FXML
-     private TextField txtEmail;
+     private TextField email;
  
      @FXML
-     private PasswordField txtPassword;
+     private PasswordField password;
  
      @FXML
      private Button btnSignin;
  
      @FXML
-     private Label btnForgot;
+     private Label btnForgetPassword;
  
      @FXML
      private Button btnSignup;
@@ -82,24 +82,24 @@ public class LoginController implements Initializable {
     @FXML
     private void handleSignIn(ActionEvent event) {
             Window owner = btnSignin.getScene().getWindow();        
-            if (txtEmail.getText().isEmpty()) {
+            if (email.getText().isEmpty()) {
               showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Please enter your email id");
               return;
             }
-            if (txtPassword.getText().isEmpty()) {
+            if (password.getText().isEmpty()) {
               showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Please enter a password");
               return;
             }
 
-            String emailId = txtEmail.getText();
-            String password = txtPassword.getText();
+            String emailCon = email.getText();
+            String passwordCon = password.getText();
             LoginDao loginDao = new LoginDao();
             
             boolean flag;
             try {
-              flag = loginDao.validate(emailId, password);
+              flag = loginDao.validate(emailCon, passwordCon);
               if (!flag) {
                 infoBox("Please enter correct Email and Password", null, "Failed");
               } else {

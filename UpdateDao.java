@@ -12,13 +12,13 @@ public class UpdateDao {
     private static final String DATABASE_PASSWORD = "root";
     private static final String INSERT_QUERY = "UPDATE alumni SET fname = '?', email= '?' , lname='?' WHERE id = 1;";
 
-    public void updateRecord(String firstName, String email, String lastname) throws SQLException {
+    public void updateRecord(String fname, String email, String lname) throws SQLException {
         try (Connection connection = DriverManager
                 .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
                 PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
-            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(1, fname);
             preparedStatement.setString(2, email);
-            preparedStatement.setString(3, lastname);
+            preparedStatement.setString(3, lname);
 //            System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

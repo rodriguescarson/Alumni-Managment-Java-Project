@@ -51,22 +51,22 @@ public class OnBoardController implements Initializable {
      Scene sceneStart, sceneRegister, sceneLogin, sceneReset, sceneHome;
     
     @FXML
-    private TextField txtFirstname;
+    private TextField fname;
 
     @FXML
-    private TextField txtLastname;
+    private TextField lname;
 
     @FXML
-    private TextField txtEmail;
+    private TextField email;
 
     @FXML
-    private DatePicker txtDOB;
+    private DatePicker dob;
 
     @FXML
     private Button btnSave;
 
     @FXML
-    private ComboBox<?> txtGender;
+    private ComboBox<?> gender;
 
     @FXML
     private TextField prno;
@@ -78,49 +78,51 @@ public class OnBoardController implements Initializable {
     private TextField yearOfPassingOut;
 
     @FXML
-    private TextField workplace;
+    private TextField workingPlace;
 
     @FXML
     private TextField currentPosition;
 
     @FXML
-    private TextField linkedIn;
+    private TextField linkedin;
 
     @FXML
-    private PasswordField txtPassword;
+    private PasswordField password;
+    
+    
     
     @FXML
     private void handleSave(ActionEvent event) {
                     Window owner = btnSave.getScene().getWindow();
-                  if (txtFirstname.getText().isEmpty()) {
+                  if (fname.getText().isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                       "Please enter your first name");
                     return;
                   }
-                  if (txtEmail.getText().isEmpty()) {
+                  if (email.getText().isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                       "Please enter your email");
                     return;
                   }
-                  if (txtLastname.getText().isEmpty()) {
+                  if (lname.getText().isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                       "Please enter a lastName");
                     return;
                   }
       
-                  String fullName = txtFirstname.getText();
-                  String emailId = txtEmail.getText();
-                  String lastname = txtLastname.getText();
+                  String fnameCon = fname.getText();
+                  String emailCon = email.getText();
+                  String lnameCon = lname.getText();
                   
                   RegisterDao registerDao = new RegisterDao();
                   try {
-                    registerDao.insertRecord(fullName, emailId, lastname);
+                    registerDao.insertRecord(fnameCon, emailCon, lnameCon);
                   } catch (SQLException ex) {
                     Logger.getLogger(OnBoardController.class.getName()).log(Level.SEVERE, null, ex);
                   }
                   
                   showAlert(Alert.AlertType.CONFIRMATION, owner, "Created Successful!",
-                    " Welcome " + txtFirstname.getText());        
+                    " Welcome " + fname.getText());        
    }
     
     @Override

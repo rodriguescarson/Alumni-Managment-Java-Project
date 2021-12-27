@@ -51,22 +51,22 @@ public class Edit_detailsController implements Initializable {
      Scene sceneStart, sceneRegister, sceneLogin, sceneReset, sceneHome;
     
      @FXML
-     private TextField txtFirstname;
+     private TextField fname;
  
      @FXML
-     private TextField txtLastname;
+     private TextField lname;
  
      @FXML
-     private TextField txtEmail;
+     private TextField email;
  
      @FXML
-     private DatePicker txtDOB;
+     private DatePicker dob;
  
      @FXML
      private Button btnSave;
  
      @FXML
-     private ComboBox<?> txtGender;
+     private ComboBox<?> gender;
  
      @FXML
      private TextField prno;
@@ -75,10 +75,10 @@ public class Edit_detailsController implements Initializable {
      private TextField college;
  
      @FXML
-     private TextField YearOfPassingOut;
+     private TextField yearOfPassingOut;
  
      @FXML
-     private TextField workplace;
+     private TextField workingplace;
  
      @FXML
      private TextField currentPosition;
@@ -90,7 +90,7 @@ public class Edit_detailsController implements Initializable {
      private PasswordField password;
  
      @FXML
-     private TextField Cgpa;
+     private TextField cgpa;
  
      @FXML
      private TextField department;
@@ -99,35 +99,35 @@ public class Edit_detailsController implements Initializable {
     @FXML
     private void saveData(ActionEvent event) {
                     Window owner = btnSave.getScene().getWindow();
-                  if (txtFirstname.getText().isEmpty()) {
+                  if (fname.getText().isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                       "Please enter your first name");
                     return;
                   }
-                  if (txtEmail.getText().isEmpty()) {
+                  if (email.getText().isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                       "Please enter your email");
                     return;
                   }
-                  if (txtLastname.getText().isEmpty()) {
+                  if (lname.getText().isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                       "Please enter a lastName");
                     return;
                   }
       
-                  String fullName = txtFirstname.getText();
-                  String emailId = txtEmail.getText();
-                  String lastname = txtLastname.getText();
+                  String fnameCon = fname.getText();
+                  String emailCon = email.getText();
+                  String lnameCon = lname.getText();
                   
                   UpdateDao updateDao = new UpdateDao();
                   try {
-                    updateDao.updateRecord(fullName, emailId, lastname);
+                    updateDao.updateRecord(fnameCon, emailCon, lnameCon);
                   } catch (SQLException ex) {
                     Logger.getLogger(Edit_detailsController.class.getName()).log(Level.SEVERE, null, ex);
                   }
                   
                   showAlert(Alert.AlertType.CONFIRMATION, owner, "Update Successful!",
-                    " Updated" + txtFirstname.getText());
+                    " Updated" + fname.getText());
     }
     
     @Override
