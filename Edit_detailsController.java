@@ -20,7 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
+import java.time.format.DateTimeFormatter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,19 +66,19 @@ public class Edit_detailsController implements Initializable {
      private Button btnSave;
  
      @FXML
-     private ComboBox<?> gender;
+     private ComboBox<String> gender;
  
      @FXML
      private TextField prno;
  
      @FXML
-     private TextField college;
+     private TextField collegeName;
  
      @FXML
      private TextField yearOfPassingOut;
  
      @FXML
-     private TextField workingplace;
+     private TextField workingPlace;
  
      @FXML
      private TextField currentPosition;
@@ -99,29 +99,101 @@ public class Edit_detailsController implements Initializable {
     @FXML
     private void saveData(ActionEvent event) {
                     Window owner = btnSave.getScene().getWindow();
-                  if (fname.getText().isEmpty()) {
-                    showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                      "Please enter your first name");
-                    return;
-                  }
                   if (email.getText().isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                       "Please enter your email");
                     return;
                   }
+                   
+                  if (fname.getText().isEmpty()) {
+                    showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                      "Please enter your first name");
+                    return;
+                  }
+
                   if (lname.getText().isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                       "Please enter a lastName");
                     return;
                   }
       
-                  String fnameCon = fname.getText();
-                  String emailCon = email.getText();
-                  String lnameCon = lname.getText();
+                      if (password.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a Password");
+      return;
+    }
+    if (prno.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a prno");
+      return;
+    }
+    if (cgpa.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a college name");
+      return;
+    }
+    if (department.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a working place");
+      return;
+    }
+    if (currentPosition.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a current position");
+      return;
+    }
+    if (yearOfPassingOut.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a year of passing out");
+      return;
+    }
+    if (linkedin.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a linedin");
+      return;
+    }
+  if (collegeName.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a college");
+      return;
+    }
+  
+  if (workingPlace.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a working place");
+      return;
+    }
+  
+    
+    if (dob.getValue() == null) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter date of birth");
+      return;
+    }
+    if (gender.getItems().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please select gender");
+      return;
+    }
                   
+    String emailCon = email.getText();
+    String fnameCon = fname.getText();
+    String lnameCon = lname.getText();
+    String passwordCon = password.getText();
+    String prnoCon = prno.getText();
+    String collegeNameCon = collegeName.getText();
+    String workingPlaceCon = workingPlace.getText();
+    String currentPositionCon = currentPosition.getText();
+    String yearOfPassingOutCon = yearOfPassingOut.getText();
+    String linkedinCon = linkedin.getText();
+    String dobCon = dob.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    String genderCon = gender.getValue();
+    String cgpaCon = cgpa.getText();
+    String departmentCon = department.getText();
+    
                   UpdateDao updateDao = new UpdateDao();
                   try {
-                    updateDao.updateRecord(fnameCon, emailCon, lnameCon);
+                    updateDao.updateRecord(fnameCon, emailCon, lnameCon,passwordCon,prnoCon,collegeNameCon,workingPlaceCon,currentPositionCon,yearOfPassingOutCon,linkedinCon,dobCon,genderCon,cgpaCon,departmentCon);
                   } catch (SQLException ex) {
                     Logger.getLogger(Edit_detailsController.class.getName()).log(Level.SEVERE, null, ex);
                   }
@@ -133,6 +205,9 @@ public class Edit_detailsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       // TODO
+    gender.getItems().removeAll(gender.getItems());
+    gender.getItems().addAll(" ","Male", "Female");
+    gender.getSelectionModel().select(" ");
     }
 
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {

@@ -10,15 +10,24 @@ public class RegisterDao {
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/mydb";
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "root";
-    private static final String INSERT_QUERY = "INSERT INTO alumni (fname, email, lname) VALUES (?, ?, ?)";
+    private static final String INSERT_QUERY = "INSERT INTO alumni (email,fname,lname,password,prno,collegeName,workingPlace,currentPosition,yearOfPassingOut,linkedin,dob,gender) VALUES (?, ?, ?,?, ?, ?,?, ?, ?,?, ?, ?)";
 
-    public void insertRecord(String fname, String email, String lname) throws SQLException {
+    public void insertRecord(String email, String fname, String lname,String password, String prno,String collegeName,String workingPlace,String currentPosition,String yearOfPassingOut,String linkedin,String dob,String gender) throws SQLException {
         try (Connection connection = DriverManager
                 .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
                 PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
-            preparedStatement.setString(1, fname);
-            preparedStatement.setString(2, email);
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, fname);
             preparedStatement.setString(3, lname);
+            preparedStatement.setString(4, password);
+            preparedStatement.setString(5,prno);
+            preparedStatement.setString(6,collegeName);
+            preparedStatement.setString(7,workingPlace);
+            preparedStatement.setString(8,currentPosition);
+            preparedStatement.setString(9,yearOfPassingOut);
+            preparedStatement.setString(10,linkedin);
+            preparedStatement.setString(11,dob);
+            preparedStatement.setString(12,gender);
 //            System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

@@ -13,12 +13,12 @@ public class LoginDao {
     private static final String DATABASE_PASSWORD = "root";
     private static final String SELECT_QUERY = "SELECT * FROM alumni WHERE email = ? and password = ?";
 
-    public boolean validate(String emailId, String password) throws SQLException {
+    public boolean validate(String email, String password) throws SQLException {
 
         try (Connection connection = DriverManager
                 .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
                 PreparedStatement preparedStatement = connection.prepareStatement(SELECT_QUERY)) {
-            preparedStatement.setString(1, emailId);
+            preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
             System.out.println(preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();

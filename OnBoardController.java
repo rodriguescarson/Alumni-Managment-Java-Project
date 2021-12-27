@@ -20,7 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
+import java.time.format.DateTimeFormatter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,93 +42,149 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-
 /**
  *
  * @author rodri
  */
 public class OnBoardController implements Initializable {
-     Scene sceneStart, sceneRegister, sceneLogin, sceneReset, sceneHome;
-    
-    @FXML
-    private TextField fname;
+  Scene sceneStart, sceneRegister, sceneLogin, sceneReset, sceneHome;
 
-    @FXML
-    private TextField lname;
+  @FXML
+  private TextField fname;
 
-    @FXML
-    private TextField email;
+  @FXML
+  private TextField lname;
 
-    @FXML
-    private DatePicker dob;
+  @FXML
+  private TextField email;
 
-    @FXML
-    private Button btnSave;
+  @FXML
+  private DatePicker dob;
 
-    @FXML
-    private ComboBox<?> gender;
+  @FXML
+  private Button btnSave;
 
-    @FXML
-    private TextField prno;
+  @FXML
+  private ComboBox < String > gender;
 
-    @FXML
-    private TextField college;
+  @FXML
+  private TextField prno;
 
-    @FXML
-    private TextField yearOfPassingOut;
+  @FXML
+  private TextField collegeName;
 
-    @FXML
-    private TextField workingPlace;
+  @FXML
+  private TextField yearOfPassingOut;
 
-    @FXML
-    private TextField currentPosition;
+  @FXML
+  private TextField workingPlace;
 
-    @FXML
-    private TextField linkedin;
+  @FXML
+  private TextField currentPosition;
 
-    @FXML
-    private PasswordField password;
-    
-    
-    
-    @FXML
-    private void handleSave(ActionEvent event) {
-                    Window owner = btnSave.getScene().getWindow();
-                  if (fname.getText().isEmpty()) {
-                    showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                      "Please enter your first name");
-                    return;
-                  }
-                  if (email.getText().isEmpty()) {
-                    showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                      "Please enter your email");
-                    return;
-                  }
-                  if (lname.getText().isEmpty()) {
-                    showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                      "Please enter a lastName");
-                    return;
-                  }
+  @FXML
+  private TextField linkedin;
+
+  @FXML
+  private PasswordField password;
+
+  @FXML
+  private void handleSave(ActionEvent event) {
       
-                  String fnameCon = fname.getText();
-                  String emailCon = email.getText();
-                  String lnameCon = lname.getText();
-                  
-                  RegisterDao registerDao = new RegisterDao();
-                  try {
-                    registerDao.insertRecord(fnameCon, emailCon, lnameCon);
-                  } catch (SQLException ex) {
-                    Logger.getLogger(OnBoardController.class.getName()).log(Level.SEVERE, null, ex);
-                  }
-                  
-                  showAlert(Alert.AlertType.CONFIRMATION, owner, "Created Successful!",
-                    " Welcome " + fname.getText());        
-   }
+    Window owner = btnSave.getScene().getWindow();
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    if (email.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter your email");
+      return;
+    }
+    if (fname.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter your first name");
+      return;
+    }
+    if (lname.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a last name");
+      return;
+    }
+    if (password.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a Password");
+      return;
+    }
+    if (prno.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a prno");
+      return;
+    }
+    if (collegeName.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a college name");
+      return;
+    }
+    if (workingPlace.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a working place");
+      return;
+    }
+    if (currentPosition.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a current position");
+      return;
+    }
+    if (yearOfPassingOut.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a year of passing out");
+      return;
+    }
+    if (linkedin.getText().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter a linedin");
+      return;
+    }
+    if (dob.getValue() == null) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please enter date of birth");
+      return;
+    }
+    if (gender.getItems().isEmpty()) {
+      showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+        "Please select gender");
+      return;
+    }
+    
+    String emailCon = email.getText();
+    String fnameCon = fname.getText();
+    String lnameCon = lname.getText();
+    String passwordCon = password.getText();
+    String prnoCon = prno.getText();
+    String collegeNameCon = collegeName.getText();
+    String workingPlaceCon = workingPlace.getText();
+    String currentPositionCon = currentPosition.getText();
+    String yearOfPassingOutCon = yearOfPassingOut.getText();
+    String linkedinCon = linkedin.getText();
+    String dobCon = dob.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    String genderCon = gender.getValue();
+    
+    RegisterDao registerDao = new RegisterDao();
+    try {
+      registerDao.insertRecord(emailCon,fnameCon,lnameCon,passwordCon,prnoCon,collegeNameCon,workingPlaceCon,currentPositionCon,yearOfPassingOutCon,linkedinCon,dobCon,genderCon);
+    } catch (SQLException ex) {
+      Logger.getLogger(OnBoardController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    showAlert(Alert.AlertType.CONFIRMATION, owner, "Created Successful!",
+      " Welcome " + fname.getText());
+  }
+
+  @Override
+  public void initialize(URL url, ResourceBundle rb) {
+    // TODO
+    gender.getItems().removeAll(gender.getItems());
+    gender.getItems().addAll(" ","Male", "Female");
+    gender.getSelectionModel().select(" ");
+  }
   private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
     Alert alert = new Alert(alertType);
     alert.setTitle(title);
@@ -145,5 +201,5 @@ public class OnBoardController implements Initializable {
     alert.setHeaderText(headerText);
     alert.showAndWait();
   }
-    
+
 }

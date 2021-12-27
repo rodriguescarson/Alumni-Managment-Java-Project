@@ -16,6 +16,49 @@ import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.*;  
+
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import java.time.format.DateTimeFormatter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Application;
+import static javafx.application.Application.launch;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class HomeController implements Initializable {
 
@@ -24,7 +67,10 @@ public class HomeController implements Initializable {
 
     @FXML
     private Label name;
-
+    
+    @FXML
+    private Label avtarName;
+        
     @FXML
     private Button btnOverview;
 
@@ -50,16 +96,16 @@ public class HomeController implements Initializable {
     private Pane pnlOverview;
 
     @FXML
-    private Label Prno;
+    private Label prno;
 
     @FXML
     private Label yearOfPassingOut;
 
     @FXML
-    private Label Department;
+    private Label department;
 
     @FXML
-    private Label Cgpa;
+    private Label cgpa;
 
     @FXML
     private VBox pnItems;
@@ -68,7 +114,7 @@ public class HomeController implements Initializable {
     private Label email;
 
     @FXML
-    private Label working;
+    private Label workingPlace;
 
     @FXML
     private Label currentPosition;
@@ -77,17 +123,77 @@ public class HomeController implements Initializable {
     private Label linkedin;
 
     @FXML
-    private Label college;
+    private Label collegeName;
 
+    @FXML
+    private Label dob;
+    
     @FXML
     private Label gender;
+    
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/mydb";
+    private static final String DATABASE_USERNAME = "root";
+    private static final String DATABASE_PASSWORD = "root";
+    
+    //change id down here to update specific user
+    private static final String INSERT_QUERY = "SELECT * FROM alumni where id=?";
 
-    @FXML
-    private Label workinPlace;
+    public void getRecord(String id) throws SQLException {
+        ResultSet rs;
+        try (Connection connection = DriverManager
+                .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
+            preparedStatement.setString(1, id);
+            rs=preparedStatement.executeQuery();
+            while (rs.next()) {              
+            
+            name.setText( rs.getString(2)+" "+rs.getString(3));      
+            prno.setText( rs.getString(4));                  
+            
+            collegeName.setText((String) rs.getString(5));                          
+        linkedin.setText( rs.getString(6));                          
+            email.setText( rs.getString(7));                                                         
+         dob.setText( rs.getString(9));                          
+          gender.setText( rs.getString(10));                          
+           workingPlace.setText( rs.getString(11));                          
+           currentPosition.setText( rs.getString(12));                          
+            department.setText( rs.getString(13));                          
+            cgpa.setText( rs.getString(14));                          
+          yearOfPassingOut.setText( rs.getString(15));                          
+            }
+            rs.close();                         
+            preparedStatement.close(); 
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+    }
 
-
+    public static void printSQLException(SQLException ex) {
+        for (Throwable e : ex) {
+            if (e instanceof SQLException) {
+                e.printStackTrace(System.err);
+                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
+                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
+                System.err.println("Message: " + e.getMessage());
+                Throwable t = ex.getCause();
+                while (t != null) {
+                    System.out.println("Cause: " + t);
+                    t = t.getCause();
+                }
+            }
+        }
+    }
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    //pass a string down , id of the loggedIn person
+    String id ="4";
+    try {
+        getRecord(id);
+    } catch (SQLException ex) {
+      Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
 //        Node[] nodes = new Node[10];
 //         for (int i = 0; i < nodes.length; i++) {
 //             try {
