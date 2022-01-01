@@ -12,9 +12,9 @@ public class UpdateDao {
     private static final String DATABASE_PASSWORD = "root";
     
     //change id down here to update specific user
-    private static final String INSERT_QUERY = "UPDATE alumni SET  email= '?', fname = '?' , lname='?' , password= '?', prno= '?', collegeName= '?', workingPlace= '?', currentPosition= '?', yearOfPassingOut= '?', linkedin= '?', dob= '?', gender= '?',cgpa= '?',department= '?' WHERE id = 1;";
+    private static final String INSERT_QUERY = "UPDATE alumni SET  email= '?', fname = '?' , lname='?' , password= '?', prno= '?', collegeName= '?', workingPlace= '?', currentPosition= '?', yearOfPassingOut= '?', linkedin= '?', dob= '?', gender= '?',cgpa= '?',department= '?' WHERE id = '?'";
 
-    public void updateRecord(String email,String fname, String lname,String password,String prno,String collegeName,String workingPlace,String currentPosition,String yearOfPassingOut,String linkedin,String dob,String gender,String cgpa,String department) throws SQLException {
+    public void updateRecord(String email,String fname, String lname,String password,String prno,String collegeName,String workingPlace,String currentPosition,String yearOfPassingOut,String linkedin,String dob,String gender,String cgpa,String department, String id) throws SQLException {
         try (Connection connection = DriverManager
                 .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
                 PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {

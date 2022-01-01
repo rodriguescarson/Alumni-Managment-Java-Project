@@ -190,10 +190,10 @@ public class Edit_detailsController implements Initializable {
     String genderCon = gender.getValue();
     String cgpaCon = cgpa.getText();
     String departmentCon = department.getText();
-    
+    String id = department.getText();
                   UpdateDao updateDao = new UpdateDao();
                   try {
-                    updateDao.updateRecord(fnameCon, emailCon, lnameCon,passwordCon,prnoCon,collegeNameCon,workingPlaceCon,currentPositionCon,yearOfPassingOutCon,linkedinCon,dobCon,genderCon,cgpaCon,departmentCon);
+                    updateDao.updateRecord(fnameCon, emailCon, lnameCon,passwordCon,prnoCon,collegeNameCon,workingPlaceCon,currentPositionCon,yearOfPassingOutCon,linkedinCon,dobCon,genderCon,cgpaCon,departmentCon,id);
                   } catch (SQLException ex) {
                     Logger.getLogger(Edit_detailsController.class.getName()).log(Level.SEVERE, null, ex);
                   }
