@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package javafxapplication;
+import java.io.IOException;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -41,7 +42,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.scene.Node;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -49,38 +56,39 @@ import javafx.stage.Window;
  */
 public class LoginController implements Initializable {
      Scene sceneStart, sceneRegister, sceneLogin, sceneReset, sceneHome;
-    
-     @FXML
-     private TextField email;
- 
-     @FXML
-     private PasswordField password;
- 
-     @FXML
-     private Button btnSignin;
- 
-     @FXML
-     private Label btnForgetPassword;
- 
-     @FXML
-     private Button btnSignup;
- 
-     @FXML
-     private Label lblErrors;
- 
-     @FXML
-     void handleSignUp(ActionEvent event) {
- 
-     }
-     
-     
-     @FXML
-     void handleForgetPassword(ActionEvent event) {
- 
-     }
-    
+     private Stage stage;
+ private Scene scene;
+ private Parent root;
     @FXML
-    private void handleSignIn(ActionEvent event) {
+    private TextField email;
+
+    @FXML
+    private PasswordField password;
+
+    @FXML
+    private Button btnSignin;
+
+    @FXML
+    private Button btnSignup;
+
+    @FXML
+    private Label lblErrors;
+
+    @FXML
+    private Button btnForgetPassword;
+
+    @FXML
+    void handleForgetPassword(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleSignUp(ActionEvent event) {
+
+    }
+
+    @FXML
+    private void handleSignIn(ActionEvent event)throws IOException {
             Window owner = btnSignin.getScene().getWindow();        
             if (email.getText().isEmpty()) {
               showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
@@ -97,15 +105,22 @@ public class LoginController implements Initializable {
             String passwordCon = password.getText();
             LoginDao loginDao = new LoginDao();
             
-            boolean flag;
+            String flag;
+            String zero= new String("0");
             try {
               flag = loginDao.validate(emailCon, passwordCon);
-              if (!flag) {
+              if (!flag.equals(zero)) {
                 infoBox("Please enter correct Email and Password", null, "Failed");
               } else {
+                System.out.println(flag);
                 infoBox("Login Successful!", null, "Passed");
                 
-              }
+                root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                              }
             } catch (SQLException ex) {
               Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }

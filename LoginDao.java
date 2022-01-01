@@ -13,22 +13,23 @@ public class LoginDao {
     private static final String DATABASE_PASSWORD = "root";
     private static final String SELECT_QUERY = "SELECT * FROM alumni WHERE email = ? and password = ?";
 
-    public boolean validate(String email, String password) throws SQLException {
+    public String validate(String email, String password) throws SQLException {
 
         try (Connection connection = DriverManager
                 .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
                 PreparedStatement preparedStatement = connection.prepareStatement(SELECT_QUERY)) {
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
-            System.out.println(preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return true;
+                System.out.println(resultSet.getString(1));
+                return resultSet.getString(1);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return false;
+        String zero= new String("0");
+        return zero;
     }
 
     public static void printSQLException(SQLException ex) {
