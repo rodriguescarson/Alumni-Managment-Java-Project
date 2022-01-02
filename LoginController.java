@@ -78,13 +78,25 @@ public class LoginController implements Initializable {
     private Button btnForgetPassword;
 
     @FXML
-    void handleForgetPassword(ActionEvent event) {
-
+    void handleForgetPassword(ActionEvent event) throws IOException{
+                FXMLLoader loader=new FXMLLoader(getClass().getResource("ForgotPassword.fxml"));
+                root = loader.load();
+                                
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
     }
 
     @FXML
-    void handleSignUp(ActionEvent event) {
-
+    void handleSignUp(ActionEvent event)throws IOException {
+                FXMLLoader loader=new FXMLLoader(getClass().getResource("OnBoard.fxml"));
+                root = loader.load();
+                                
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
     }
 
     @FXML
@@ -105,17 +117,23 @@ public class LoginController implements Initializable {
             String passwordCon = password.getText();
             LoginDao loginDao = new LoginDao();
             
-            String flag;
+            String id;
             String zero= new String("0");
             try {
-              flag = loginDao.validate(emailCon, passwordCon);
-              if (!flag.equals(zero)) {
+              id = loginDao.validate(emailCon, passwordCon);
+              if (id.equals(zero)) {
                 infoBox("Please enter correct Email and Password", null, "Failed");
               } else {
-                System.out.println(flag);
+                System.out.println(id);
                 infoBox("Login Successful!", null, "Passed");
                 
-                root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+                FXMLLoader loader=new FXMLLoader(getClass().getResource("Home.fxml"));
+                root = loader.load();
+                
+                HomeController homeController = loader.getController();
+                
+                homeController.getRecord(id);
+                
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);

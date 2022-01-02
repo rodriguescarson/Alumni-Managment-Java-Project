@@ -57,11 +57,21 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
 import javafx.stage.Window;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 
 public class HomeController implements Initializable {
 
+     private Stage stage;
+ private Scene scene;
+ private Parent root;
+    
     @FXML
     private ImageView imgUrl;
 
@@ -183,16 +193,11 @@ public class HomeController implements Initializable {
             }
         }
     }
+
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     //pass a string down , id of the loggedIn person
-    String id ="4";
-    try {
-        getRecord(id);
-    } catch (SQLException ex) {
-      Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-    }
 
 //        Node[] nodes = new Node[10];
 //         for (int i = 0; i < nodes.length; i++) {
@@ -217,7 +222,7 @@ public class HomeController implements Initializable {
     }
 
 
-    public void handleClicks(ActionEvent actionEvent) {
+    public void handleClicks(ActionEvent actionEvent) throws IOException{
         if (actionEvent.getSource() == btnOverview) {
             pnlOverview.setStyle("-fx-background-color : #02030A");
             pnlOverview.toFront();
@@ -225,8 +230,13 @@ public class HomeController implements Initializable {
         
         if(actionEvent.getSource()==btnEdit)
         {
-            pnlEdit.setStyle("-fx-background-color : #464F67");
-            pnlEdit.toFront();
+                FXMLLoader loader=new FXMLLoader(getClass().getResource("EditDetails.fxml"));
+                root = loader.load();
+                                
+                stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
         }
         if (actionEvent.getSource() == btnConnects) {
             pnlConnects.setStyle("-fx-background-color : #1620A1");
@@ -234,9 +244,13 @@ public class HomeController implements Initializable {
         }
         
         if (actionEvent.getSource() == btnSignOut) {
-            pnlSignOut.setStyle("-fx-background-color : #53639F");
-            pnlSignOut.toFront();
+       FXMLLoader loader=new FXMLLoader(getClass().getResource("Login.fxml"));
+                root = loader.load();
+                                
+                stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
         }
-
     }
 }
