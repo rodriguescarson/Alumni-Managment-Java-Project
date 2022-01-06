@@ -47,6 +47,11 @@
             </Label>
             <TextField fx:id="cgpa" layoutX="77.0" layoutY="452.0" prefHeight="32.0" prefWidth="278.0" promptText="CGPA" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
             <TextField fx:id="department" layoutX="392.0" layoutY="452.0" prefHeight="32.0" prefWidth="278.0" promptText="Department" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
+            <ImageView fitHeight="23.0" fitWidth="39.0" layoutX="11.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/back_icon.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <AnchorPane layoutX="720.0" layoutY="-3.0" prefHeight="571.0" prefWidth="382.0" style="-fx-background-color: #05071F;">
