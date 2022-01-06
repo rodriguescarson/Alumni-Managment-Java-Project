@@ -230,7 +230,7 @@ public class HomeController implements Initializable {
         
         if(actionEvent.getSource()==btnEdit)
         {
-                FXMLLoader loader=new FXMLLoader(getClass().getResource("EditDetails.fxml"));
+                FXMLLoader loader=new FXMLLoader(getClass().getResource("Edit_Details.fxml"));
                 root = loader.load();
                                 
                 stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();

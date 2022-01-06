@@ -15,8 +15,10 @@ public class LoginDao {
 
     public String validate(String email, String password) throws SQLException {
 
-        try (Connection connection = DriverManager
+        try (
+          Connection connection = DriverManager
                 .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+          
                 PreparedStatement preparedStatement = connection.prepareStatement(SELECT_QUERY)) {
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
