@@ -103,7 +103,7 @@ public class AdminHomeController implements Initializable {
     private static final String DATABASE_PASSWORD = "root";
     
     //change id down here to update specific user
-    private static final String INSERT_QUERY = "SELECT * FROM alumni where id=?";
+    private static final String INSERT_QUERY = "SELECT * FROM alumni";
 
     public void getRecord(String id) throws SQLException {
         ResultSet rs;

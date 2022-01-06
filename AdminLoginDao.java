@@ -11,7 +11,7 @@ public class AdminLoginDao {
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/mydb";
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "root";
-    private static final String SELECT_QUERY = "SELECT * FROM AdminAlumni WHERE email = ? and password = ?";
+    private static final String SELECT_QUERY = "SELECT * FROM adminalumni WHERE email = ? and password = ?";
 
     public String validate(String email, String password) throws SQLException {
 
