@@ -54,7 +54,7 @@ import javafx.stage.StageStyle;
  *
  * @author rodri
  */
-public class LoginController implements Initializable {
+public class AdminLoginController implements Initializable {
      Scene sceneStart, sceneRegister, sceneLogin, sceneReset, sceneHome;
      private Stage stage;
  private Scene scene;
@@ -69,7 +69,13 @@ public class LoginController implements Initializable {
     private Button btnSignin;
 
     @FXML
+    private Button btnSignup;
+
+    @FXML
     private Label lblErrors;
+
+    @FXML
+    private Button btnForgetPassword;
 
     @FXML
     private void handleSignIn(ActionEvent event)throws IOException {
@@ -87,24 +93,24 @@ public class LoginController implements Initializable {
 
             String emailCon = email.getText();
             String passwordCon = password.getText();
-            LoginDao AdminLoginDao = new LoginDao();
+            AdminLoginDao adminloginDao = new AdminLoginDao();
             
             String id;
             String zero= new String("0");
             try {
-              id = AdminLoginDao.validate(emailCon, passwordCon);
+              id = adminloginDao.validate(emailCon, passwordCon);
               if (id.equals(zero)) {
                 infoBox("Please enter correct Email and Password", null, "Failed");
               } else {
                 System.out.println(id);
                 infoBox("Login Successful!", null, "Passed");
                 
-                FXMLLoader loader=new FXMLLoader(getClass().getResource("Home.fxml"));
+                FXMLLoader loader=new FXMLLoader(getClass().getResource("AdminHome.fxml"));
                 root = loader.load();
                 
-                HomeController homeController = loader.getController();
+                AdminHomeController adminHomeController = loader.getController();
                 
-                homeController.getRecord(id);
+                adminHomeController.getRecord(id);
                 
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
