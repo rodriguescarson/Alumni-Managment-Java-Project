@@ -189,7 +189,7 @@ public class HomeController implements Initializable {
         {
                 FXMLLoader loader=new FXMLLoader(getClass().getResource("Edit_Details.fxml"));
                 root = loader.load();
-                                
+                
                 stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);

@@ -1,5 +1,6 @@
 package javafxapplication;
-
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -75,7 +76,7 @@ public class AdminHomeController implements Initializable {
     private Label cgpa;
 
     @FXML
-    private VBox pnItems;
+    private VBox pnItems = null;
 
     @FXML
     private Label email;
@@ -105,35 +106,35 @@ public class AdminHomeController implements Initializable {
     //change id down here to update specific user
     private static final String INSERT_QUERY = "SELECT * FROM alumni";
 
-    public void getRecord(String id) throws SQLException {
-        ResultSet rs;
-        try (Connection connection = DriverManager
-                .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
-                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
-            preparedStatement.setString(1, id);
-            rs=preparedStatement.executeQuery();
-            while (rs.next()) {              
-            
-            name.setText( rs.getString(2)+" "+rs.getString(3));      
-            prno.setText( rs.getString(4));                  
-            
-            collegeName.setText((String) rs.getString(5));                          
-        linkedin.setText( rs.getString(6));                          
-            email.setText( rs.getString(7));                                                         
-         dob.setText( rs.getString(9));                          
-          gender.setText( rs.getString(10));                          
-           workingPlace.setText( rs.getString(11));                          
-           currentPosition.setText( rs.getString(12));                          
-            department.setText( rs.getString(13));                          
-            cgpa.setText( rs.getString(14));                          
-          yearOfPassingOut.setText( rs.getString(15));                          
-            }
-            rs.close();                         
-            preparedStatement.close(); 
-        } catch (SQLException e) {
-            printSQLException(e);
-        }
-    }
+//    public void getRecord(String id) throws SQLException {
+//        ResultSet rs;
+//        try (Connection connection = DriverManager
+//                .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+//                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
+//            preparedStatement.setString(1, id);
+//            rs=preparedStatement.executeQuery();
+//            while (rs.next()) {              
+//            
+//            name.setText( rs.getString(2)+" "+rs.getString(3));      
+//            prno.setText( rs.getString(4));                  
+//            
+//            collegeName.setText((String) rs.getString(5));                          
+//        linkedin.setText( rs.getString(6));                          
+//            email.setText( rs.getString(7));                                                         
+//         dob.setText( rs.getString(9));                          
+//          gender.setText( rs.getString(10));                          
+//           workingPlace.setText( rs.getString(11));                          
+//           currentPosition.setText( rs.getString(12));                          
+//            department.setText( rs.getString(13));                          
+//            cgpa.setText( rs.getString(14));                          
+//          yearOfPassingOut.setText( rs.getString(15));                          
+//            }
+//            rs.close();                         
+//            preparedStatement.close(); 
+//        } catch (SQLException e) {
+//            printSQLException(e);
+//        }
+//    }
 
     public static void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
@@ -156,26 +157,26 @@ public class AdminHomeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     //pass a string down , id of the loggedIn person
 
-//        Node[] nodes = new Node[10];
-//         for (int i = 0; i < nodes.length; i++) {
-//             try {
-//
-//                 final int j = i;
-//                 nodes[i] = FXMLLoader.load(getClass().getResource("Item.fxml"));
-//
-//                 //give the items some effect
-//
-//                 nodes[i].setOnMouseEntered(event -> {
-//                     nodes[j].setStyle("-fx-background-color : #0A0E3F");
-//                 });
-//                 nodes[i].setOnMouseExited(event -> {
-//                     nodes[j].setStyle("-fx-background-color : #02030A");
-//                 });
-//                 pnItems.getChildren().add(nodes[i]);
-//             } catch (IOException e) {
-//                 e.printStackTrace();
-//             }
-//         }
+        Node[] nodes = new Node[10];
+         for (int i = 0; i < nodes.length; i++) {
+             try {
+
+                 final int j = i;
+                 nodes[i] = FXMLLoader.load(getClass().getResource("Item.fxml"));
+
+                 //give the items some effect
+
+                 nodes[i].setOnMouseEntered(event -> {
+                     nodes[j].setStyle("-fx-background-color : #0A0E3F");
+                 });
+                 nodes[i].setOnMouseExited(event -> {
+                     nodes[j].setStyle("-fx-background-color : #02030A");
+                 });
+                 pnItems.getChildren().add(nodes[i]);
+             } catch (IOException e) {
+                 e.printStackTrace();
+             }
+         }
     }
 
 
