@@ -49,7 +49,7 @@
                         <Font name="Segoe UI" size="10.0" />
                     </font>
                 </Label>
-            <Button fx:id="btnForgetPassword" layoutX="8.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleForgetPassword" prefHeight="34.0" prefWidth="137.0" style="-fx-background-color: #000000; -fx-border-color: #000000;" styleClass="forgetButton" stylesheets="@../styling/fullpackstyling.css" text="Forget Password" />
+            <Button layoutX="8.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleForgetPassword" prefHeight="34.0" prefWidth="137.0" style="-fx-background-color: #000000; -fx-border-color: #000000;" styleClass="forgetButton" stylesheets="@../styling/fullpackstyling.css" text="Forget Password" />
             </children>
         </Pane>
         <Label alignment="CENTER" layoutX="394.0" layoutY="466.0" prefHeight="23.0" prefWidth="173.0" text="Designed By: Reev &amp; Carson" textFill="#5b5a5a" AnchorPane.bottomAnchor="14.0">
@@ -57,5 +57,6 @@
                 <Font name="Segoe UI" size="12.0" />
             </font>
         </Label>
+      <Button layoutX="717.0" layoutY="460.0" mnemonicParsing="false" onAction="#adminLogin" prefHeight="34.0" prefWidth="137.0" style="-fx-background-color: #000000; -fx-border-color: #000000;" stylesheets="@../styling/fullpackstyling.css" text="Admin Login" textFill="#a8a2a2" />
     </children>
 </AnchorPane>

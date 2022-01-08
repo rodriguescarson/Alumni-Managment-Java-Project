@@ -12,7 +12,7 @@ public class LoginDao {
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "root";
     private static final String SELECT_QUERY = "SELECT * FROM alumni WHERE email = ? and password = ?";
-
+    private static final String SELECT_QUERYID = "SELECT * FROM alumni WHERE email = ?";
     public String validate(String email, String password) throws SQLException {
 
         try (
@@ -34,6 +34,27 @@ public class LoginDao {
         return zero;
     }
 
+        public String getId(String email) throws SQLException {
+
+        try (
+          Connection connection = DriverManager
+                .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+          
+                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_QUERYID)) {
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                System.out.println(resultSet.getString(1));
+                return resultSet.getString(1);
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        String zero= new String("0");
+        return zero;
+    }
+
+    
     public static void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {

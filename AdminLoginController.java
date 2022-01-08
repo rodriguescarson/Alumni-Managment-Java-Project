@@ -92,6 +92,17 @@ public class AdminLoginController implements Initializable {
     private VBox pnItems;
 
     @FXML
+    void alumniLogin(ActionEvent event) throws IOException {
+                FXMLLoader loader=new FXMLLoader(getClass().getResource("Login.fxml"));
+                root = loader.load();
+                                
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+    }
+    
+    @FXML
     private void handleSignIn(ActionEvent event)throws IOException {
             Window owner = btnSignin.getScene().getWindow();        
             if (email.getText().isEmpty()) {
@@ -124,6 +135,7 @@ public class AdminLoginController implements Initializable {
                 
                 AdminHomeController adminHomeController = loader.getController();
                 
+                adminHomeController.getRecord(id);
 //                adminHomeController.getRecord(id);
                 
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();

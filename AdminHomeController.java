@@ -22,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import static javafxapplication.ItemController.printSQLException;
 
 
 public class AdminHomeController implements Initializable {
@@ -31,73 +32,13 @@ public class AdminHomeController implements Initializable {
  private Parent root;
     
     @FXML
-    private ImageView imgUrl;
-
-    @FXML
-    private Label name;
+    private VBox pnItems;
     
     @FXML
-    private Label avtarName;
-        
-    @FXML
-    private Button btnOverview;
+    private Button btnSignout;
 
     @FXML
-    private Button btnConnects;
-
-    @FXML
-    private Button btnEdit;
-
-    @FXML
-    private Button btnSignOut;
-
-    @FXML
-    private Pane pnlConnects;
-
-    @FXML
-    private Pane pnlEdit;
-
-    @FXML
-    private Pane pnlSignOut;
-
-    @FXML
-    private Pane pnlOverview;
-
-    @FXML
-    private Label prno;
-
-    @FXML
-    private Label yearOfPassingOut;
-
-    @FXML
-    private Label department;
-
-    @FXML
-    private Label cgpa;
-
-    @FXML
-    private VBox pnItems = null;
-
-    @FXML
-    private Label email;
-
-    @FXML
-    private Label workingPlace;
-
-    @FXML
-    private Label currentPosition;
-
-    @FXML
-    private Label linkedin;
-
-    @FXML
-    private Label collegeName;
-
-    @FXML
-    private Label dob;
-    
-    @FXML
-    private Label gender;
+    private Label totalStudent;
     
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/mydb";
     private static final String DATABASE_USERNAME = "root";
@@ -116,21 +57,7 @@ public class AdminHomeController implements Initializable {
             rs=preparedStatement.executeQuery();
             
             while (rs.next()) {              
-            
-            name.setText( rs.getString(2)+" "+rs.getString(3));      
-            prno.setText( rs.getString(4));                  
-            
-            collegeName.setText((String) rs.getString(5));                          
-            linkedin.setText( rs.getString(6));                          
-            email.setText( rs.getString(7));                                                         
-            dob.setText( rs.getString(9));                          
-            gender.setText( rs.getString(10));                          
-            workingPlace.setText( rs.getString(11));                          
-            currentPosition.setText( rs.getString(12));                          
-            department.setText( rs.getString(13));                          
-            cgpa.setText( rs.getString(14));                          
-            yearOfPassingOut.setText( rs.getString(15));                          
-            
+                       
             }
             rs.close();                         
             preparedStatement.close(); 
@@ -157,55 +84,112 @@ public class AdminHomeController implements Initializable {
 
     
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources){
     //pass a string down , id of the loggedIn person
 
-        Node[] nodes = new Node[10];
-         for (int i = 0; i < nodes.length; i++) {
-             try {
+                ResultSet rs;
+
+        try (Connection connection = DriverManager
+                .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
+            
+            rs=preparedStatement.executeQuery();
+            
+            int i=0;
+            while (rs.next()) {              
+                         try {
 
                  final int j = i;
-                 nodes[i] = FXMLLoader.load(getClass().getResource("Item.fxml"));
+                 
 
-                 //give the items some effect
+                 FXMLLoader node=new FXMLLoader(getClass().getResource("Item.fxml"));
+                 
+//                 getRecord(id);                 
+                
+                node.getNamespace().put("name",(String) rs.getString(2)+" "+(String)rs.getString(3));
+                node.getNamespace().put("prno", (String)rs.getString(4));                 
+                node.getNamespace().put("collegeName", (String)rs.getString(5));
+                node.getNamespace().put("linkedin",(String) rs.getString(6));
+                node.getNamespace().put("email",(String) rs.getString(7));
+                node.getNamespace().put("dob",(String) rs.getString(9));
+                node.getNamespace().put("gender", (String)rs.getString(10));
+                node.getNamespace().put("workingPlace",(String) rs.getString(11));
+                node.getNamespace().put("currentPosition", (String)rs.getString(12));
+                node.getNamespace().put("department", (String)rs.getString(13));
+                node.getNamespace().put("cgpa", (String)rs.getString(14));
+                node.getNamespace().put("yearOfPassingOut", (String)rs.getString(15));
+                
 
-                 nodes[i].setOnMouseEntered(event -> {
-                     nodes[j].setStyle("-fx-background-color : #0A0E3F");
-                 });
-                 nodes[i].setOnMouseExited(event -> {
-                     nodes[j].setStyle("-fx-background-color : #02030A");
-                 });
-                 pnItems.getChildren().add(nodes[i]);
+                 //            name.setText( rs.getString(2)+" "+rs.getString(3));      
+//            prno.setText( rs.getString(4));                  
+//            
+//            collegeName.setText((String) rs.getString(5));                          
+//            linkedin.setText( rs.getString(6));                          
+//            email.setText( rs.getString(7));                                                         
+//            dob.setText( rs.getString(9));                          
+//            gender.setText( rs.getString(10));                          
+//            workingPlace.setText( rs.getString(11));                          
+//            currentPosition.setText( rs.getString(12));                          
+//            department.setText( rs.getString(13));                          
+//            cgpa.setText( rs.getString(14));                          
+//            yearOfPassingOut.setText( rs.getString(15));                          
+
+                 
+//               try{  
+//                 controller.getRecord(id);
+//               }catch(SQLException e ){
+//               
+//               }
+               //give the items some effect
+
+                 pnItems.getChildren().add(node.load());
+                 i++;
              } catch (IOException e) {
-                 e.printStackTrace();
              }
-         }
+//            name.setText( rs.getString(2)+" "+rs.getString(3));      
+//            prno.setText( rs.getString(4));                  
+//            collegeName.setText((String) rs.getString(5));                          
+//            linkedin.setText( rs.getString(6));                          
+//            email.setText( rs.getString(7));                                                         
+//            dob.setText( rs.getString(9));                          
+//            gender.setText( rs.getString(10));                          
+//            workingPlace.setText( rs.getString(11));                          
+//            currentPosition.setText( rs.getString(12));                          
+//            department.setText( rs.getString(13));                          
+//            cgpa.setText( rs.getString(14));                          
+//            yearOfPassingOut.setText( rs.getString(15));                          
+            }
+            String s=Integer.toString(i);
+            totalStudent.setText(s);
+            rs.close();                         
+            preparedStatement.close(); 
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+
     }
 
 
     public void handleClicks(ActionEvent actionEvent) throws IOException{
-        if (actionEvent.getSource() == btnOverview) {
-            pnlOverview.setStyle("-fx-background-color : #02030A");
-            pnlOverview.toFront();
-        }
+ 
         
-        if(actionEvent.getSource()==btnEdit)
-        {
-                FXMLLoader loader=new FXMLLoader(getClass().getResource("Edit_Details.fxml"));
-                root = loader.load();
-                                
-                stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-        }
-        if (actionEvent.getSource() == btnConnects) {
-            pnlConnects.setStyle("-fx-background-color : #1620A1");
-            pnlConnects.toFront();
-        }
-        
-        if (actionEvent.getSource() == btnSignOut) {
-       FXMLLoader loader=new FXMLLoader(getClass().getResource("Login.fxml"));
+//        if(actionEvent.getSource()==btnEdit)
+//        {
+//                FXMLLoader loader=new FXMLLoader(getClass().getResource("Edit_Details.fxml"));
+//                root = loader.load();
+//                                
+//                stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+//                scene = new Scene(root);
+//                stage.setScene(scene);
+//                stage.show();
+//        }
+//        if (actionEvent.getSource() == btnConnects) {
+//            pnlConnects.setStyle("-fx-background-color : #1620A1");
+//            pnlConnects.toFront();
+//        }
+//        
+        if (actionEvent.getSource() == btnSignout) {
+       FXMLLoader loader=new FXMLLoader(getClass().getResource("AdminLogin.fxml"));
                 root = loader.load();
                                 
                 stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();

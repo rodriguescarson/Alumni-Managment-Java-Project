@@ -25,7 +25,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import java.io.IOException;
 /**
  *
  * @author rodri
@@ -39,17 +39,33 @@ public class ForgotPasswordController  implements Initializable {
     private TextField email;
 
     @FXML
-    private PasswordField password;
+    private PasswordField newpassword;
 
     @FXML
-    private Button btnSignin;
+    private Button btnForgetPassword;
 
     @FXML
     private Label lblErrors;
 
     @FXML
-    private void handleSignIn(ActionEvent event)throws IOException {
-            Window owner = btnSignin.getScene().getWindow();        
+    private TextField dob;
+    
+    @FXML
+    private void goBack(ActionEvent eventsingin) throws IOException{
+               FXMLLoader loader=new FXMLLoader(getClass().getResource("Login.fxml"));
+                root = loader.load();
+                                
+                stage = (Stage)((Node)eventsingin.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+    }
+
+    
+    @FXML
+    private void handleForgetPassword(ActionEvent event)throws IOException {
+        System.out.println("34");
+        Window owner = btnForgetPassword.getScene().getWindow();        
             if (email.getText().isEmpty()) {
               showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Please enter your email id");
@@ -61,36 +77,32 @@ public class ForgotPasswordController  implements Initializable {
               return;
             }
 
-            if (dob.getText().isEmpty()) {
-                showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                  "Please enter a date of birth");
-                return;
-              }
-
             String emailCon = email.getText();
-            String newpasswordCon = neewpassword.getText();
-            String dobCon = dob.getText();
-            LoginDao AdminLoginDao = new LoginDao();
+            String newpasswordCon = newpassword.getText();
+            
+            System.out.println(emailCon+" "+newpasswordCon);
+            
+            LoginDao loginDao = new LoginDao();
             
             String id;
             String zero= new String("0");
             try {
-              id = AdminLoginDao.validate(emailCon, dobCon);
+              id = loginDao.getId(emailCon);
               if (id.equals(zero)) {
-                infoBox("Please enter correct Email and Date Of Birth", null, "Failed");
+                infoBox("Please enter correct Email", null, "Failed");
               } else {
                 System.out.println(id);
                 infoBox("Login Successful!", null, "Passed");
 
                        UpdateDao updateDao = new UpdateDao();
                         try {
-                         updateDao.updateRecord(emailCon, newpasswordCon, dobCon, id);
+                         updateDao.updatePassword(emailCon, newpasswordCon, id);
                         } catch (SQLException ex) {
                         Logger.getLogger(Edit_detailsController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                   
                   showAlert(Alert.AlertType.CONFIRMATION, owner, "Update Successful!",
-                    " Updated" + fname.getText());
+                    " Updated");
 
                 
                 FXMLLoader loader=new FXMLLoader(getClass().getResource("Home.fxml"));

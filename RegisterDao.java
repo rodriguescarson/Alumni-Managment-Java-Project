@@ -28,7 +28,7 @@ public class RegisterDao {
             preparedStatement.setString(10,linkedin);
             preparedStatement.setString(11,dob);
             preparedStatement.setString(12,gender);
-//            System.out.println(preparedStatement);
+            System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);

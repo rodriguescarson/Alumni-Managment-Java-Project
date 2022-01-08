@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -47,11 +49,21 @@
             </Label>
             <TextField fx:id="cgpa" layoutX="77.0" layoutY="452.0" prefHeight="32.0" prefWidth="278.0" promptText="CGPA" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
             <TextField fx:id="department" layoutX="392.0" layoutY="452.0" prefHeight="32.0" prefWidth="278.0" promptText="Department" style="-fx-border-color: #9643A9; -fx-background-color: #2A0033; -fx-border-radius: 20;" styleClass="purpleText" stylesheets="@../styling/fullpackstyling.css" />
-            <ImageView fitHeight="23.0" fitWidth="39.0" layoutX="11.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/back_icon.png" />
-               </image>
-            </ImageView>
+            <Button layoutX="-2.0" layoutY="15.0" mnemonicParsing="false" onAction="#goBack" styleClass="button3" stylesheets="@../styling/fullpackstyling.css">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/back.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <effect>
+                        <ColorAdjust brightness="1.0" />
+                     </effect>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
       <AnchorPane layoutX="720.0" layoutY="-3.0" prefHeight="571.0" prefWidth="382.0" style="-fx-background-color: #05071F;">

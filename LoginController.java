@@ -25,7 +25,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javafx.event.ActionEvent;
 /**
  *
  * @author rodri
@@ -47,6 +47,39 @@ public class LoginController implements Initializable {
     @FXML
     private Label lblErrors;
 
+    @FXML
+    void adminLogin(ActionEvent event) throws IOException {
+    FXMLLoader loader=new FXMLLoader(getClass().getResource("AdminLogin.fxml"));
+                root = loader.load();
+                                
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+    }
+    
+    @FXML
+    void handleSignUp(ActionEvent event) throws IOException {
+               FXMLLoader loader=new FXMLLoader(getClass().getResource("OnBoard.fxml"));
+                root = loader.load();
+                                
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+    }    
+    
+   @FXML
+    void handleForgetPassword(ActionEvent event) throws IOException{
+                FXMLLoader loader=new FXMLLoader(getClass().getResource("ForgotPassword.fxml"));
+                root = loader.load();
+                                
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+    }
+    
     @FXML
     private void handleSignIn(ActionEvent event)throws IOException {
             Window owner = btnSignin.getScene().getWindow();        

@@ -104,9 +104,12 @@ public class HomeController implements Initializable {
     
     //change id down here to update specific user
     private static final String INSERT_QUERY = "SELECT * FROM alumni where id=?";
-
+    String idForEdit;
+    
     public void getRecord(String id) throws SQLException {
         ResultSet rs;
+        idForEdit=id;
+
         try (Connection connection = DriverManager
                 .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
                 PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
@@ -154,32 +157,12 @@ public class HomeController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    //pass a string down , id of the loggedIn person
 
-//        Node[] nodes = new Node[10];
-//         for (int i = 0; i < nodes.length; i++) {
-//             try {
-//
-//                 final int j = i;
-//                 nodes[i] = FXMLLoader.load(getClass().getResource("Item.fxml"));
-//
-//                 //give the items some effect
-//
-//                 nodes[i].setOnMouseEntered(event -> {
-//                     nodes[j].setStyle("-fx-background-color : #0A0E3F");
-//                 });
-//                 nodes[i].setOnMouseExited(event -> {
-//                     nodes[j].setStyle("-fx-background-color : #02030A");
-//                 });
-//                 pnItems.getChildren().add(nodes[i]);
-//             } catch (IOException e) {
-//                 e.printStackTrace();
-//             }
-//         }
     }
 
 
     public void handleClicks(ActionEvent actionEvent) throws IOException{
+                System.out.println(idForEdit);
         if (actionEvent.getSource() == btnOverview) {
             pnlOverview.setStyle("-fx-background-color : #02030A");
             pnlOverview.toFront();
@@ -192,7 +175,7 @@ public class HomeController implements Initializable {
                 
                 Edit_detailsController Edit_detailsController = loader.getController();
                 
-                Edit_detailsController.saveData(id);
+                Edit_detailsController.setData(idForEdit);
 
                 stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                 scene = new Scene(root);

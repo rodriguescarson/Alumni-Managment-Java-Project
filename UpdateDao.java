@@ -10,10 +10,11 @@ public class UpdateDao {
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/mydb";
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "root";
-    
+//    
     //change id down here to update specific user
-    private static final String INSERT_QUERY = "UPDATE alumni SET  email= '?', fname = '?' , lname='?' , password= '?', prno= '?', collegeName= '?', workingPlace= '?', currentPosition= '?', yearOfPassingOut= '?', linkedin= '?', dob= '?', gender= '?',cgpa= '?',department= '?' WHERE id = '?'";
-
+    private static final String INSERT_QUERY = "UPDATE alumni SET fname=?, fname = ? , lname=? , password= ?, prno= ?, collegeName= ?, workingPlace= ?, currentPosition= ?, yearOfPassingOut= ?, linkedin= ?, dob= ?, gender= ?,cgpa= ?,department= ? WHERE id = ?;";
+    private static final String INSERT_QUERY_FORGET_PASSWORD = "UPDATE alumni SET password= ? WHERE id = ? and email = ?;";
+    
     public void updateRecord(String email,String fname, String lname,String password,String prno,String collegeName,String workingPlace,String currentPosition,String yearOfPassingOut,String linkedin,String dob,String gender,String cgpa,String department, String id) throws SQLException {
         try (Connection connection = DriverManager
                 .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
@@ -32,7 +33,23 @@ public class UpdateDao {
             preparedStatement.setString(12, gender);
             preparedStatement.setString(13, cgpa);
             preparedStatement.setString(14, department);
-//            System.out.println(preparedStatement);
+            preparedStatement.setString(15,id);
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+    }
+    
+        public void updatePassword(String email,String newpassword,String id) throws SQLException {
+        try (Connection connection = DriverManager
+                .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_FORGET_PASSWORD)) {
+            preparedStatement.setString(1, newpassword);
+            preparedStatement.setString(2, id);
+            preparedStatement.setString(3, email);
+            
+            System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);

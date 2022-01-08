@@ -5,6 +5,7 @@
  */
 package javafxapplication;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -15,10 +16,14 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 /**
  *
@@ -72,9 +77,29 @@ public class Edit_detailsController implements Initializable {
      @FXML
      private TextField department;
 
+     String id;
+          private Stage stage;
+ private Scene scene;
+ private Parent root;
+      public void setData(String idForEdit){
+         id=idForEdit;
+         System.out.println(id+"dnskn");
+     }
+        @FXML
+    private void goBack(ActionEvent eventsingin) throws IOException,SQLException{
+               FXMLLoader loader=new FXMLLoader(getClass().getResource("Home.fxml"));
+                root = loader.load();
+                HomeController homeController = loader.getController();
+                
+                homeController.getRecord(id);
+                stage = (Stage)((Node)eventsingin.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+    } 
     
     @FXML
-    private void saveData(ActionEvent event,String id) {
+    private void saveData(ActionEvent event) throws IOException, SQLException {
                     Window owner = btnSave.getScene().getWindow();
                   if (email.getText().isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
@@ -169,6 +194,7 @@ public class Edit_detailsController implements Initializable {
     String departmentCon = department.getText();
                   UpdateDao updateDao = new UpdateDao();
                   try {
+                      System.out.println(id+"dnskn");
                     updateDao.updateRecord(fnameCon, emailCon, lnameCon,passwordCon,prnoCon,collegeNameCon,workingPlaceCon,currentPositionCon,yearOfPassingOutCon,linkedinCon,dobCon,genderCon,cgpaCon,departmentCon,id);
                   } catch (SQLException ex) {
                     Logger.getLogger(Edit_detailsController.class.getName()).log(Level.SEVERE, null, ex);
@@ -176,6 +202,18 @@ public class Edit_detailsController implements Initializable {
                   
                   showAlert(Alert.AlertType.CONFIRMATION, owner, "Update Successful!",
                     " Updated" + fname.getText());
+                  
+                FXMLLoader loader=new FXMLLoader(getClass().getResource("Home.fxml"));
+                root = loader.load();           
+
+                HomeController homeController = loader.getController();
+                
+                homeController.getRecord(id);
+                
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
     }
     
     @Override

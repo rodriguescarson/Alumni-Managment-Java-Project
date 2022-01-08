@@ -8,28 +8,37 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="695.0" spacing="80.0" style="-fx-background-color: #02030A; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" spacing="80.0" style="-fx-background-color: #02030A; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <ImageView fitHeight="31.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../RestaurantMgtSampleUI/src/images/icons8_GPS_Antenna_64px_1.png" />
+                <Image url="@../images/User_Logo.jpg" />
             </image>
             <HBox.margin>
                 <Insets left="10.0" />
             </HBox.margin>
         </ImageView>
-        <Label text="Ree Dsouza" textFill="#b7c3d7" />
-        <Label text="1914036" textFill="#b7c3d7">
+        <Label fx:id="$name" text="$name" textFill="#b7c3d7" />
+        <Label fx:id="$prno" text="$prno" textFill="#b7c3d7" />
+        <Label fx:id="$collegeName" text="$collegeName" textFill="#b7c3d7" />
+        <Label fx:id="$linkedin" text="$linkedin" textFill="#b7c3d7">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
-        <Label text="9.9" textFill="#b7c3d7">
+        <Label fx:id="$cgpa" text="" textFill="#b7c3d7">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
-        <Button mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@../../../RestaurantMgtSampleUI/src/home/style.css" text="Yes">
+      <Label fx:id="$email" text="$email" textFill="#b7c3d7" />
+      <Label fx:id="$dob" text="$dob" textFill="#b7c3d7" />
+      <Label fx:id="$gender" text="$gender" textFill="#b7c3d7" />
+      <Label fx:id="$workingPlace" text="$workingPlace" textFill="#b7c3d7" />
+      <Label fx:id="$currentPosition" text="$currentPosition" textFill="#b7c3d7" />
+      <Label fx:id="$department" text="$department" textFill="#b7c3d7" />
+      <Label fx:id="$yearOfPassingOut" text="$yearOfPassingOut" textFill="#b7c3d7" />
+        <Button mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@../styling/style.css" text="Yes">
             <HBox.margin>
                 <Insets />
             </HBox.margin>

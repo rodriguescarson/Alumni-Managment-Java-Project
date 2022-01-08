@@ -5,6 +5,7 @@
  */
 package javafxapplication;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -15,10 +16,14 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 /**
@@ -28,44 +33,58 @@ import javafx.stage.Window;
 public class OnBoardController implements Initializable {
   Scene sceneStart, sceneRegister, sceneLogin, sceneReset, sceneHome;
 
-  @FXML
-  private TextField fname;
+    @FXML
+    private TextField fname;
 
-  @FXML
-  private TextField lname;
+    @FXML
+    private TextField lname;
 
-  @FXML
-  private TextField email;
+    @FXML
+    private TextField email;
 
-  @FXML
-  private DatePicker dob;
+    @FXML
+    private DatePicker dob;
 
-  @FXML
-  private Button btnSave;
+    @FXML
+    private Button btnSave;
 
-  @FXML
-  private ComboBox < String > gender;
+    @FXML
+    private ComboBox<String> gender;
 
-  @FXML
-  private TextField prno;
+    @FXML
+    private TextField prno;
 
-  @FXML
-  private TextField collegeName;
+    @FXML
+    private TextField collegeName;
 
-  @FXML
-  private TextField yearOfPassingOut;
+    @FXML
+    private TextField yearOfPassingOut;
 
-  @FXML
-  private TextField workingPlace;
+    @FXML
+    private TextField workingPlace;
 
-  @FXML
-  private TextField currentPosition;
+    @FXML
+    private TextField currentPosition;
 
-  @FXML
-  private TextField linkedin;
+    @FXML
+    private TextField linkedin;
 
-  @FXML
-  private PasswordField password;
+    @FXML
+    private PasswordField password;
+
+      private Stage stage;
+         private Scene scene;
+     private Parent root;
+        @FXML
+    private void goBack(ActionEvent eventsingin) throws IOException{
+               FXMLLoader loader=new FXMLLoader(getClass().getResource("Login.fxml"));
+                root = loader.load();
+                                
+                stage = (Stage)((Node)eventsingin.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+    }
 
   @FXML
   private void handleSave(ActionEvent event) {
