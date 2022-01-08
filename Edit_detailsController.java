@@ -74,7 +74,7 @@ public class Edit_detailsController implements Initializable {
 
     
     @FXML
-    private void saveData(ActionEvent event) {
+    private void saveData(ActionEvent event,String id) {
                     Window owner = btnSave.getScene().getWindow();
                   if (email.getText().isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
@@ -167,7 +167,6 @@ public class Edit_detailsController implements Initializable {
     String genderCon = gender.getValue();
     String cgpaCon = cgpa.getText();
     String departmentCon = department.getText();
-    String id = department.getText();
                   UpdateDao updateDao = new UpdateDao();
                   try {
                     updateDao.updateRecord(fnameCon, emailCon, lnameCon,passwordCon,prnoCon,collegeNameCon,workingPlaceCon,currentPositionCon,yearOfPassingOutCon,linkedinCon,dobCon,genderCon,cgpaCon,departmentCon,id);
