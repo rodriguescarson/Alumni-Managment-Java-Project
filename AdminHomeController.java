@@ -22,7 +22,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import static javafxapplication.ItemController.printSQLException;
 
 
 public class AdminHomeController implements Initializable {
@@ -85,8 +84,7 @@ public class AdminHomeController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources){
-    //pass a string down , id of the loggedIn person
-
+   
                 ResultSet rs;
 
         try (Connection connection = DriverManager
@@ -102,9 +100,8 @@ public class AdminHomeController implements Initializable {
                  final int j = i;
                  
 
-                 FXMLLoader node=new FXMLLoader(getClass().getResource("Item.fxml"));
+                FXMLLoader node=new FXMLLoader(getClass().getResource("Item.fxml"));
                  
-//                 getRecord(id);                 
                 
                 node.getNamespace().put("name",(String) rs.getString(2)+" "+(String)rs.getString(3));
                 node.getNamespace().put("prno", (String)rs.getString(4));                 
@@ -120,44 +117,11 @@ public class AdminHomeController implements Initializable {
                 node.getNamespace().put("yearOfPassingOut", (String)rs.getString(15));
                 
 
-                 //            name.setText( rs.getString(2)+" "+rs.getString(3));      
-//            prno.setText( rs.getString(4));                  
-//            
-//            collegeName.setText((String) rs.getString(5));                          
-//            linkedin.setText( rs.getString(6));                          
-//            email.setText( rs.getString(7));                                                         
-//            dob.setText( rs.getString(9));                          
-//            gender.setText( rs.getString(10));                          
-//            workingPlace.setText( rs.getString(11));                          
-//            currentPosition.setText( rs.getString(12));                          
-//            department.setText( rs.getString(13));                          
-//            cgpa.setText( rs.getString(14));                          
-//            yearOfPassingOut.setText( rs.getString(15));                          
-
-                 
-//               try{  
-//                 controller.getRecord(id);
-//               }catch(SQLException e ){
-//               
-//               }
-               //give the items some effect
 
                  pnItems.getChildren().add(node.load());
                  i++;
              } catch (IOException e) {
              }
-//            name.setText( rs.getString(2)+" "+rs.getString(3));      
-//            prno.setText( rs.getString(4));                  
-//            collegeName.setText((String) rs.getString(5));                          
-//            linkedin.setText( rs.getString(6));                          
-//            email.setText( rs.getString(7));                                                         
-//            dob.setText( rs.getString(9));                          
-//            gender.setText( rs.getString(10));                          
-//            workingPlace.setText( rs.getString(11));                          
-//            currentPosition.setText( rs.getString(12));                          
-//            department.setText( rs.getString(13));                          
-//            cgpa.setText( rs.getString(14));                          
-//            yearOfPassingOut.setText( rs.getString(15));                          
             }
             String s=Integer.toString(i);
             totalStudent.setText(s);
@@ -171,23 +135,6 @@ public class AdminHomeController implements Initializable {
 
 
     public void handleClicks(ActionEvent actionEvent) throws IOException{
- 
-        
-//        if(actionEvent.getSource()==btnEdit)
-//        {
-//                FXMLLoader loader=new FXMLLoader(getClass().getResource("Edit_Details.fxml"));
-//                root = loader.load();
-//                                
-//                stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-//                scene = new Scene(root);
-//                stage.setScene(scene);
-//                stage.show();
-//        }
-//        if (actionEvent.getSource() == btnConnects) {
-//            pnlConnects.setStyle("-fx-background-color : #1620A1");
-//            pnlConnects.toFront();
-//        }
-//        
         if (actionEvent.getSource() == btnSignout) {
        FXMLLoader loader=new FXMLLoader(getClass().getResource("AdminLogin.fxml"));
                 root = loader.load();

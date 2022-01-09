@@ -45,7 +45,7 @@ public class JavaFXApplication extends Application {
            System.out.println("hi");
                 
     try{
-        Parent root1 = FXMLLoader.load(getClass().getResource("AdminHome.fxml"));
+        Parent root1 = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene scene1 = new Scene(root1);
         
         stage.setScene(scene1);
