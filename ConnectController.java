@@ -1,5 +1,6 @@
 package javafxapplication;
-import java.sql.SQLException;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -12,6 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,23 +22,28 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.sql.SQLException;
 
-public class HomeController implements Initializable {
+
+public class ConnectController implements Initializable {
 
      private Stage stage;
  private Scene scene;
  private Parent root;
+    String idForEdit;
+    
     
     @FXML
-    private ImageView imgUrl;
+    private Pane pnlOverview;
+    
+    @FXML
+    private VBox pnItems;
+    
+    @FXML
+    private Button btnSignout;
 
     @FXML
-    private Label name;
+    private Label totalStudent;
     
-    @FXML
-    private Label avtarName;
-        
     @FXML
     private Button btnOverview;
 
@@ -46,89 +53,25 @@ public class HomeController implements Initializable {
     @FXML
     private Button btnEdit;
 
-    @FXML
-    private Button btnSignOut;
-
-    @FXML
-    private Pane pnlConnects;
-
-    @FXML
-    private Pane pnlEdit;
-
-    @FXML
-    private Pane pnlSignOut;
-
-    @FXML
-    private Pane pnlOverview;
-
-    @FXML
-    private Label prno;
-
-    @FXML
-    private Label yearOfPassingOut;
-
-    @FXML
-    private Label department;
-
-    @FXML
-    private Label cgpa;
-
-    @FXML
-    private VBox pnItems;
-
-    @FXML
-    private Label email;
-
-    @FXML
-    private Label workingPlace;
-
-    @FXML
-    private Label currentPosition;
-
-    @FXML
-    private Label linkedin;
-
-    @FXML
-    private Label collegeName;
-
-    @FXML
-    private Label dob;
-    
-    @FXML
-    private Label gender;
-    
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/mydb";
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "root";
     
     //change id down here to update specific user
-    private static final String INSERT_QUERY = "SELECT * FROM alumni where id=?";
-    String idForEdit;
-    
-    public void getRecord(String id) throws SQLException {
-        ResultSet rs;
-        idForEdit=id;
+    private static final String INSERT_QUERY = "SELECT * FROM alumni";
 
+    public void getRecord(String id) throws SQLException {
+        idForEdit=id;
+        ResultSet rs;
         try (Connection connection = DriverManager
                 .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
                 PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
-            preparedStatement.setString(1, id);
+            
+                       
             rs=preparedStatement.executeQuery();
+            
             while (rs.next()) {              
-            
-            name.setText( rs.getString(2)+" "+rs.getString(3));      
-            prno.setText( rs.getString(4));                  
-            
-            collegeName.setText((String) rs.getString(5));                          
-        linkedin.setText( rs.getString(6));                          
-            email.setText( rs.getString(7));                                                         
-         dob.setText( rs.getString(9));                          
-          gender.setText( rs.getString(10));                          
-           workingPlace.setText( rs.getString(11));                          
-           currentPosition.setText( rs.getString(12));                          
-            department.setText( rs.getString(13));                          
-            cgpa.setText( rs.getString(14));                          
-          yearOfPassingOut.setText( rs.getString(15));                          
+                       
             }
             rs.close();                         
             preparedStatement.close(); 
@@ -155,20 +98,54 @@ public class HomeController implements Initializable {
 
     
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources){
+   
+                ResultSet rs;
+
+        try (Connection connection = DriverManager
+                .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
+            
+            rs=preparedStatement.executeQuery();
+            
+            int i=0;
+            while (rs.next()) {              
+                         try {
+
+                 final int j = i;
+                 
+
+                FXMLLoader node=new FXMLLoader(getClass().getResource("ItemAlumni.fxml"));
+                 
+                
+                node.getNamespace().put("name",(String) rs.getString(2)+" "+(String)rs.getString(3));
+                node.getNamespace().put("collegeName", (String)rs.getString(5));
+                node.getNamespace().put("linkedin",(String) rs.getString(6));
+                node.getNamespace().put("department", (String)rs.getString(13));                
+
+                 pnItems.getChildren().add(node.load());
+                 i++;
+             } catch (IOException e) {
+             }
+            }
+            String s=Integer.toString(i);
+            totalStudent.setText(s);
+            rs.close();                         
+            preparedStatement.close(); 
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
 
     }
 
 
-    public void handleClicks(ActionEvent actionEvent) throws IOException,SQLException{
+    public void handleClicks(ActionEvent actionEvent) throws IOException{
                 System.out.println(idForEdit);
         if (actionEvent.getSource() == btnOverview) {
                 FXMLLoader loader=new FXMLLoader(getClass().getResource("Home.fxml"));
                 root = loader.load();
-                 HomeController homeController = loader.getController();
                 
-                homeController.getRecord(idForEdit);
-                
+               
 //                ConnectController.setData(idForEdit);
 
                 stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -205,7 +182,7 @@ public class HomeController implements Initializable {
                 stage.show();
         }
         
-        if (actionEvent.getSource() == btnSignOut) {
+        if (actionEvent.getSource() == btnSignout) {
        FXMLLoader loader=new FXMLLoader(getClass().getResource("Login.fxml"));
                 root = loader.load();
                                 

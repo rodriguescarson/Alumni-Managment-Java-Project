@@ -1,8 +1,15 @@
+.purpleText{
+-fx-text-fill:  #ffffff;
+}
+
+.forgetButton{
+-fx-text-fill:  #0C39FF;
+}
+
 .button
 {
 -fx-background-color : #FFF;
 -fx-border-color: #355ECE;
--fx-text-fill:  #ffffff;
 }
 .button:hover
 {
@@ -31,6 +38,25 @@
 -fx-background-color : #0C3400 ;
 -fx-text-fill: #FFF;
 }
+
+
+.button3
+{
+-fx-background-color :  #05071F;
+    -fx-border-color: #05071F;
+-fx-text-fill:  #FFF;
+}
+.button3:hover
+{
+-fx-background-color :  #05071F;    -fx-border-color: #05071F;
+-fx-text-fill:   #FFF;
+}
+.button3:pressed
+{
+-fx-background-color :  #05071F;    -fx-border-color: #05071F;
+-fx-text-fill: #FFF;
+}
+
 
 
 .table-view .column-header,
